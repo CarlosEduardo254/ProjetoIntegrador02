@@ -9,7 +9,7 @@ public static class StartupRotas
     public static void StartupRota(this WebApplication app)
     {
         var rota = app.MapGroup("startupRotaDev");
-
+// TODO: MUDAR A CONEXÃO COM O BANCO DE DADOS USANDO A INTERFACE
         // Cadastro de Startup
         rota.MapPost("cadastro", async (StartupDto startupDto, DbContextApp context) =>
         {
@@ -87,55 +87,6 @@ public static class StartupRotas
             await context.SaveChangesAsync();
 
             return Results.Ok(startup);
-        }).RequireAuthorization();
-
-        //ATUALIZAÇÕES CONTATOS
-        //TODO: Problema: ele não está encontrando contatos a serem atualizados quando existem
-        rota.MapPatch("atualizar-contatos-desatualizados/{id}", async (Guid idStartup, DbContextApp context) =>
-        {
-            // Carrega a startup com seus membros
-            var startup = await context.Startups
-                .Include(s => s.Membros)
-                .FirstOrDefaultAsync(u => u.Id == idStartup && u.Ativo == true);
-
-            if (startup == null) return Results.NotFound("Startup não encontrada");
-            if (startup.Membros == null || !startup.Membros.Any()) 
-                return Results.BadRequest("A startup não possui membros");
-
-            var atualizacoes = new List<ContatoAtualizado>();
-
-            // Para cada membro, busca o usuário correspondente atualizado
-            foreach (var membro in startup.Membros)
-            {
-                var usuarioAtualizado = await context.Usuarios
-                    .AsNoTracking() // Evita conflitos de tracking
-                    .FirstOrDefaultAsync(u => u.Id == membro.Id && u.EstaAtivo == true);
-
-                if (usuarioAtualizado != null && membro.Contato != usuarioAtualizado.Contato)
-                {
-                    var contatoAntigo = membro.Contato;
-                    membro.AtualizarContato(usuarioAtualizado.Contato);
-
-                    atualizacoes.Add(new ContatoAtualizado(
-                        startup.Nome, 
-                        membro.Nome, 
-                        contatoAntigo, 
-                        usuarioAtualizado.Contato
-                    ));
-                }
-            }
-
-            if (atualizacoes.Any())
-            {
-                await context.SaveChangesAsync();
-                return Results.Ok(new
-                {
-                    Mensagem = "Contatos atualizados com sucesso",
-                    Atualizacoes = atualizacoes
-                });
-            }
-
-            return Results.Ok("Nenhum contato precisava ser atualizado");
         }).RequireAuthorization();
 
         //ATUALIZAR STATUS, MODELO DE NEGOCIOS, JORNADAS, MUP, DESCRICÃO

@@ -10,7 +10,6 @@ public class Usuario
     public string Contato { get; private set; }
     public Tipo_membro TipoMembro { get; private set; }
     public string Senha { get; private set; }
-
     public bool EstaAtivo { get; private set; }
 
     public string? RefreshToken { get; private set; }

@@ -2,13 +2,12 @@ using BackendDev.Models.Usuario;
 
 namespace BackendDev.Models.Startup;
 
-public class Startup
+public partial class Startup
 {
     public Guid Id { get; init; }
     public string Nome { get; private set; }
     public string Descricao { get; private set; }
     public List<Usuario.Usuario>? Membros { get; private set; } = new();
-    public string? ContatosMembros { get; private set; }
     public StatusStartup Status { get; private set; }
     public ModeloDeNegocio ModeloNegocio { get; private set; }
     public bool Mvp { get; private set; }
@@ -31,7 +30,6 @@ public class Startup
         Nome = nome ?? throw new ArgumentNullException(nameof(nome));
         Descricao = descricao ?? throw new ArgumentNullException(nameof(descricao));
         Membros = membros;
-        ContatosMembros = contatosMembros;
         Status = statusStartup;
         ModeloNegocio = modeloNegocio;
         Mvp = mvp;
@@ -51,7 +49,6 @@ public class Startup
         Nome = startupDto.Nome ?? throw new ArgumentNullException(nameof(startupDto.Nome));
         Descricao = startupDto.Descricao ?? throw new ArgumentNullException(nameof(startupDto.Descricao));
         Membros = new List<Usuario.Usuario>();
-        ContatosMembros = " ";
         
         // Definindo o Status
         try
@@ -150,13 +147,13 @@ public class Startup
         Membros?.Add(membro);
     }
 
+    
     public void RemoverMembro(Usuario.Usuario membro)
     {
         if (membro == null) throw new ArgumentNullException(nameof(membro));
         if(Membros == null || Membros.Count == 0) throw new InvalidOperationException("A statup não possúi membro para ser removido.");
         Membros?.Remove(membro);
     }
-
     public void DesativarStartup()
     {
         Ativo = false;
