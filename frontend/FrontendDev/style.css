@@ -1,0 +1,69 @@
+       .container {
+           display: flex;
+           justify-content: center;
+           position: relative;
+           text-align: center;
+           align-items: center;
+           /*Talvez*/
+           flex-direction: column;
+           /*Talvez*/
+
+       }
+
+       .container-fluid {
+           height: 100vh;
+           display: flex;
+           flex-direction: row;
+           position: relative;
+       }
+
+       .btn-orangered {
+           background-color: orangered;
+           /* Define a cor de fundo */
+           color: white;
+           /* Define a cor do texto */
+           border: none;
+           /* Remove a borda padrão */
+           padding: 10px 20px;
+           /* Adiciona espaçamento interno */
+           border-radius: 5px;
+           /* Bordas arredondadas */
+           cursor: pointer;
+           /* Altera o cursor para o estilo de botão */
+       }
+
+       .btn-orangered:hover {
+           background-color: darkorange;
+           /* Altera a cor no hover */
+       }
+
+       .home-button {
+           position: absolute;
+           top: 10px;
+           left: 10px;
+       }
+
+       .profile-section,
+       .management-section {
+           flex: 1;
+           display: flex;
+           justify-content: center;
+           align-items: center;
+       }
+
+       .profile-section {
+           background-color: #8592AB;
+       }
+
+       .management-section {
+           background-color: blue;
+       }
+
+       .profile-card,
+       .management-card {
+           background-color: transparent;
+           padding: 20px;
+           text-align: center;
+           width: 80%;
+           max-width: 500px;
+       }
