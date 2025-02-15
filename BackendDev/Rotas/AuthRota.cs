@@ -10,7 +10,7 @@ public static class AuthRota
     {
         
         var rota = app.MapGroup("auth");
-        rota.MapPost("login", async (LoginDto loginDto, [FromServices] Auth auth) =>
+        rota.MapPost("login", async ([FromBody] LoginDto loginDto, [FromServices] Auth auth) =>
         {
             var tokens = await auth.ValidateCredentials(loginDto.email, loginDto.senha);
         

@@ -41,7 +41,17 @@ builder.Services.AddSwaggerGen(options =>
         }
     });
 });
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder =>
+        {
+            builder
+                .AllowAnyOrigin()     // Permite requisições de qualquer origem
+                .AllowAnyMethod()     // Permite qualquer método (GET, POST, etc)
+                .AllowAnyHeader();    // Permite qualquer header
+        });
+});
 builder.Services.AddDbContext<DbContextApp>(options =>
     options.UseMySql(
         builder.Configuration.GetConnectionString("DefaultConnection"),
@@ -86,7 +96,7 @@ builder.Services.ConfigureHttpJsonOptions(options =>
 });
 
 var app = builder.Build();
-
+app.UseCors("AllowAll");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())

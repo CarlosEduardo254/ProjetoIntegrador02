@@ -1,5 +1,6 @@
 using BackendDev.Infraestrutura.Data;
 using BackendDev.Models.Usuario;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,15 +12,20 @@ public static class UserRotas
     {
         var rota = app.MapGroup("userRouteDev");
         
-        // TODO: Funções específicas de cada tipo
+       
         
         // Cadastro
         rota.MapPost("cadastro", async (UsuarioDTO userDto, DbContextApp context) =>
         {
             var usuario = new Usuario(userDto);
-
             await context.Usuarios.AddAsync(usuario);
             await context.SaveChangesAsync();
+    
+            // Retorna um objeto JSON
+            return Results.Created("", new { 
+                success = true,
+                message = "Usuário cadastrado com sucesso" 
+            });
         });
         
         
