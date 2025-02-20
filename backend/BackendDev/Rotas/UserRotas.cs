@@ -65,6 +65,7 @@ public static class UserRotas
             if(usuario == null) return Results.NotFound();
             
             // Fazendo a atualização
+            if (updateDto.nome != null) usuario.AtualizarNome(updateDto.nome);
             if (updateDto.email != null) usuario.AtualizarEmail(updateDto.email);
             if (updateDto.contato != null) usuario.AtualizarContato(updateDto.contato);
             if (updateDto.senha != null) usuario.AtualizarSenha(updateDto.senha);

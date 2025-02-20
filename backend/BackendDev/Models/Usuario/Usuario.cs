@@ -71,6 +71,12 @@ public class Usuario
             throw new ArgumentException("Valor inválido para Tipo_membro.", ex); // Lança uma exceção mais informativa
         }
     }
+
+
+    public void AtualizarNome(string nome)
+    {
+        Nome = nome ?? throw new ArgumentNullException(nameof(nome));
+    }
     
     public void AtualizarEmail(string email)
     {
