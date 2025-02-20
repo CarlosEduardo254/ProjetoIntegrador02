@@ -1,0 +1,164 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container-fluid {
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+
+.home-button {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.profile-section {
+    flex: 1;
+    background: #2c3e50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile-card {
+    text-align: center;
+    color: white;
+    max-width: 400px;
+    padding: 2rem;
+}
+
+.profile-image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 1.5rem;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ecf0f1;
+}
+
+.profile-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-image-container:hover .edit-overlay {
+    opacity: 1;
+}
+
+.edit-icon i {
+    font-size: 1.5rem;
+    color: white;
+}
+
+.management-section {
+    flex: 1;
+    background: #34495e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.management-card {
+    background: rgba(255,255,255,0.1);
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+}
+
+.contact-input-group {
+    display: flex;
+    gap: 10px;
+}
+
+.ddd-input {
+    width: 70px !important;
+    text-align: center;
+}
+
+.phone-input {
+    flex: 1;
+}
+
+input:invalid {
+    border-color: #e74c3c !important;
+}
+
+input:valid:not(:placeholder-shown) {
+    border-color: #2ecc71 !important;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 400px;
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 1rem;
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        flex-direction: column;
+    }
+
+    .profile-section, .management-section {
+        width: 100%;
+        padding: 2rem 0;
+    }
+
+    .contact-input-group {
+        flex-direction: column;
+    }
+
+    .ddd-input, .phone-input {
+        width: 100% !important;
+    }
+}
+
+.delete-account {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
