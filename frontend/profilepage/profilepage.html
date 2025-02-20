@@ -1,1 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="profilepagestyle.css?v=4">
+</head>
+<body>
+    <div class="container-fluid g-0">
+        <!-- Botão Home -->
+        <div class="home-button">
+            <button onclick="goToHome()" class="btn btn-secondary">Home</button>
+        </div>
 
+        <!-- Seção do Perfil -->
+        <div class="profile-section">
+            <div class="profile-card">
+                <div class="profile-image-container">
+                    <div class="svg-profile-icon">
+                        <img id="profile-pic" src="default-profile.png" alt="Foto de perfil">
+                    </div>
+                    <div class="edit-overlay">
+                        <label for="upload-image" class="edit-icon">
+                            <i class="bi bi-camera-fill"></i>
+                        </label>
+                        <input type="file" id="upload-image" accept="image/*" class="d-none">
+                    </div>
+                </div>
+                <h2 class="mt-4 text-white" id="profile-name">Nome: Carregando...</h2>
+                <p class="text-white" id="profile-email">Email: Carregando...</p>
+                <p class="text-white" id="profile-contact">Contato: Carregando...</p>
+            </div>
+        </div>
+
+        <!-- Seção de Gerenciamento -->
+        <div class="management-section">
+            <div class="management-card">
+                <h3 class="text-white">Editar Perfil</h3>
+                <form id="profile-form">
+                    <!-- campo do nome -->
+                    <div class="mb-3">
+                        <label for="name" class="form-label text-white">Nome Completo</label>
+                        <input type="text" class="form-control" 
+                               id="name" 
+                               pattern="[A-Za-zÀ-ú\s]{3,}" 
+                               title="Mínimo 3 caracteres (apenas letras)">
+                    </div>
+
+                    <!-- campo do email -->
+                    <div class="mb-3">
+                        <label for="email" class="form-label text-white">E-mail</label>
+                        <input type="email" class="form-control" 
+                               id="email" 
+                               pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$">
+                    </div>
+
+                    <!-- campo do celular/contato -->
+                    <div class="mb-3">
+                        <label class="form-label text-white">Contato</label>
+                        <div class="contact-input-group">
+                            <input type="text" class="form-control ddd-input" 
+                                   id="ddd" 
+                                   placeholder="DDD" 
+                                   maxlength="2" 
+                                   pattern="\d{2}" 
+                                   title="Apenas 2 dígitos">
+                            <input type="tel" class="form-control phone-input" 
+                                   id="phone" 
+                                   placeholder="Número" 
+                                   maxlength="9" 
+                                   pattern="\d{8,9}" 
+                                   title="8 ou 9 dígitos">
+                        </div>
+                    </div>
+
+                    <!-- campo das senhas -->
+                    <div class="mb-3">
+                        <label for="new-password" class="form-label text-white">Nova Senha</label>
+                        <input type="password" class="form-control" 
+                               id="new-password" 
+                               minlength="8"
+                               placeholder="Opcional">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="current-password" class="form-label text-white">Senha Atual</label>
+                        <input type="password" class="form-control" 
+                               id="current-password" 
+                               required
+                               placeholder="Confirme com sua senha atual">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary w-100">Salvar Alterações</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="delete-account">
+            <button class="delete-account-btn btn btn-danger">Excluir Conta</button>
+        </div>
+
+      <!-- Modal de confirmação de exclusão da conta-->
+        <div id="delete-confirmation-modal" class="modal">
+            <div class="modal-content">
+                <p>Para excluir sua conta, digite sua senha:</p>
+                <input type="password" id="delete-password" placeholder="Senha atual">
+                <div class="modal-buttons">
+                    <button id="confirm-delete" class="btn btn-danger">Confirmar</button>
+                    <button id="cancel-delete" class="btn btn-secondary">Cancelar</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
+        <script src="profilepagescripts.js?v=4"></script>
+    </div>
+</body>
+</html>
