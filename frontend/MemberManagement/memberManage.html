@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciamento de Membros</title>
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="members.js"></script>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="voltar()">&larr;</button>
+
+        <h1>Gerenciamento de Membros</h1>
+
+        <div class="content">
+            <!-- Lista de membros -->
+            <div class="members-list">
+                <h2>Membros</h2>
+                <button class="add-member-btn" onclick="adicionarMembro()">+ Adicionar Membro</button>
+                <p id="error-message" class="error-message"></p>
+                <ul id="members"></ul>
+            </div>
+
+            <!-- Informações do Coordenador -->
+            <div class="management-card">
+                <h2>Coordenador</h2>
+                <div class="coordinator-info">
+                    <img id="coordinator-photo" class="member-photo-lg" src="assets/default-user.png" alt="Coordenador">
+                    <p id="coordinator-name" class="coordinator-name">Nome do Coordenador</p>
+                </div>
+                <p id="coordinator-phone" class="coordinator-phone">Telefone do Coordenador</p> <!-- Alterado para telefone -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para adicionar/editar membro -->
+    <div id="editModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2 id="modal-title">Adicionar Membro</h2>
+            <div id="modal-body">
+            </div>
+            <button onclick="salvarEdicao()">Salvar</button>
+        </div>
+    </div>
+</body>
+</html>
