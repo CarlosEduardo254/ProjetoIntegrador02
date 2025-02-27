@@ -24,7 +24,7 @@ body {
 }
 
 .back-button, .home-button {
-    background: var(--accent-blue);
+    background: #1a3a6e;
     color: white;
     border: none;
     padding: 10px;
@@ -40,8 +40,12 @@ body {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
+.back-button:hover {
+    color: #1a3a6e;
+}
+
 .back-button:hover, .home-button:hover {
-    background: #1a3a6e;
+    background: white;
 }
 
 h1 {
