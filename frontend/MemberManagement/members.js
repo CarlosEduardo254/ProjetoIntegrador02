@@ -210,3 +210,7 @@ window.onclick = function (event) {
 function voltar() {
     window.history.back();
 }
+
+function irParaHome() {
+    window.location.href = "home.html"; // TODO: adicionar link da home
+}
