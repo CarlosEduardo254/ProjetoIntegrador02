@@ -45,6 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     loadStartupData();
 });
 
+<<<<<<< HEAD
 // Modificar botões de navegação para incluir verificação
 function setupNavigationButtons() {
     // Botão para editar informações da startup (apenas para líderes)
@@ -54,6 +55,14 @@ function setupNavigationButtons() {
     // Botão para gerenciar membros (apenas para líderes)
     const membersButton = document.getElementById('manage-members-btn');
     
+=======
+function voltar() {
+    window.history.back();
+}
+
+function irParaHome() {
+    window.location.href = "home.html"; // TODO: adicionar link da home
+>>>>>>> add5c0c555bf1c73f38d8cfee717f76891503891
 }
 
 
