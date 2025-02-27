@@ -169,8 +169,12 @@ document.getElementById('confirm-delete').addEventListener('click', async () => 
   }
 });
 
-function goToHome() {
-  window.location.href = '/'; // TODO: adicionar link da pagina home
+function voltar() {
+    window.history.back();
+}
+
+function irParaHome() {
+    window.location.href = "home.html"; // TODO: adicionar link da home
 }
 
 // Chamada da função para carregar os dados
