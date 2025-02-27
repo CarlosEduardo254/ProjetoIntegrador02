@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script defer src="dashboard.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Botões de navegação -->
+        <div class="header">
+            <div class="navigation-buttons">
+                <button class="back-button" onclick="voltar()">&larr;</button>
+                <button class="home-button" onclick="irParaHome()">&#127968;</button>
+            </div>
+            <h1>Dashboard</h1>
+        </div>
+
+        <div class="graficos">
+            <!-- Gráfico de coluna do lucro -->
+            <div class="grafico-container">
+                <h2>Lucro Mensal</h2>
+                <canvas id="graficoLucro"></canvas>
+                <!-- Botão para abrir/fechar a tabela (apenas para membros) -->
+                <button id="toggleTabela" class="toggle-btn" style="display: none;">Mostrar Tabela de Lucros</button>
+                <div id="tabelaContainer" class="tabela-container" style="display: none;">
+                    <table id="tabelaLucro">
+                        <thead>
+                            <tr>
+                                <th>Mês</th>
+                                <th>Lucro (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dados do lucro serão inseridos dinamicamente aqui -->
+                        </tbody>
+                    </table>
+                    <!-- Botão para salvar alterações -->
+                    <button id="salvarLucro" class="salvar-btn">Salvar Lucros</button>
+                </div>
+            </div>
+
+            <!-- Linha do tempo de atualizações -->
+            <div class="grafico-container">
+                <h2>Atualizações do Sistema</h2>
+                <!-- Formulário para adicionar nova atualização -->
+                <form id="formAtualizacao" style="display: none;">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" required>
+                    <label for="tipoAtualizacao">Tipo de Atualização:</label>
+                    <select id="tipoAtualizacao" name="tipoAtualizacao" required>
+                        <option value="Funcionalidade">Funcionalidade</option>
+                        <option value="Correção">Correção</option>
+                        <option value="Melhoria">Melhoria</option>
+                    </select>
+                    <button type="submit" class="salvar-btn">Adicionar Atualização</button>
+                </form>
+                <!-- Lista de atualizações -->
+                <ul id="atualizacoes"></ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
