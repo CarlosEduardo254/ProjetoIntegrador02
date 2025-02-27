@@ -22,6 +22,18 @@ body {
     position: relative;
 }
 
+.header {
+    display: flex;
+    align-items: center;
+    gap: 20px; 
+    margin-bottom: 20px;
+}
+
+.navigation-buttons {
+    display: flex;
+    gap: 10px;
+}
+
 .back-button, .home-button {
     background: white;
     color: #1a3a6e;
@@ -39,12 +51,9 @@ body {
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
-.back-button:hover {
-    color: white;
-}
-
 .back-button:hover, .home-button:hover {
-    background: #1a3a6e;
+    background: var(--accent-blue);
+    color: white;
 }
 
 .content {
