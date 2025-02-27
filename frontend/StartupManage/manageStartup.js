@@ -142,8 +142,12 @@ document.addEventListener('DOMContentLoaded', () => {
     loadStartupData();
 });
 
-function goHome() {
-    window.location.href = '/'; //TODO: colocar link da home
+function voltar() {
+    window.history.back();
+}
+
+function irParaHome() {
+    window.location.href = "home.html"; // TODO: adicionar link da home
 }
 
 function viewMembers() {
