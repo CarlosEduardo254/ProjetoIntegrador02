@@ -83,6 +83,22 @@ body {
     color: white;
 }
 
+.coordinator-card {
+    background-color: #34495e;
+    color: var(--text-white);
+    border: 1px solid var(--accent-blue);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.coordinator-card .card-title {
+    margin-bottom: 15px;
+    font-size: 18px;
+    color: --text-orange;
+}
+
 .member-list {
     max-height: 400px;
     overflow-y: auto;
@@ -106,6 +122,17 @@ body {
     object-fit: cover;
 }
 
+.delete-startup-btn {
+    background-color: var(--error-red);
+    color: var(--text-white);
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#delete-startup-btn:hover {
+    background-color: #c0392b;
+
+}
 .member-info {
     flex: 1;
 }

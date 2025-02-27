@@ -1,5 +1,6 @@
 using BackendDev.Infraestrutura.Data;
 using BackendDev.Models.Startup;
+using BackendDev.Models.Usuario;
 using Microsoft.EntityFrameworkCore;
 
 namespace BackendDev.Rotas;
@@ -19,6 +20,21 @@ public static class StartupRotas
             await context.SaveChangesAsync();
         });
 
+        // Verificar se um usuário é líder da startup
+        rota.MapGet("verificarLider/{id}", async (Guid id, Guid userId, DbContextApp context) =>
+        {
+            var startup = await context.Startups
+                .Include(s => s.Membros) // Assumindo que você tem uma coleção de líderes na classe Startup
+                .FirstOrDefaultAsync(s => s.Id == id && s.Ativo == true );
+        
+            if (startup == null) return Results.NotFound("Startup não encontrada");
+    
+            // Verificar se o usuário está na lista de líderes
+            var isLeader = startup.Membros.Any(m => m.Id == userId && m.TipoMembro == Tipo_membro.Lider);
+
+            return Results.Ok(new { isLeader });
+        });
+        
         // Busca todos as startups
         rota.MapGet("busca/", async (DbContextApp context) =>
         {
@@ -35,7 +51,7 @@ public static class StartupRotas
                 .ToListAsync();
 
             return Results.Ok(startups);
-        }).RequireAuthorization();
+        });
 
         rota.MapGet("exibirStartup/{id}", async (Guid id, DbContextApp context) =>
         {
@@ -66,11 +82,13 @@ public static class StartupRotas
             if (startup == null) return Results.NotFound("Startup não encontrada");
             if (usuario == null) return Results.NotFound("Usuário não encontrado");
 
+            
+            
             startup.AdicionarMembro(usuario);
             await context.SaveChangesAsync();
 
             return Results.Ok(startup);
-        }).RequireAuthorization();
+        });
 
         // REMOVER MEMBRO
         rota.MapPatch("remover/{id}", async (DbContextApp context, Guid idUser, Guid idStartup) =>
@@ -87,7 +105,7 @@ public static class StartupRotas
             await context.SaveChangesAsync();
 
             return Results.Ok(startup);
-        }).RequireAuthorization();
+        });
 
         //ATUALIZAR STATUS, MODELO DE NEGOCIOS, JORNADAS, MUP, DESCRICÃO
         rota.MapPatch("atualizar/{id}", async (Guid id, StartupUpdateDto updateDto, DbContextApp context) =>
@@ -104,6 +122,16 @@ public static class StartupRotas
 
             await context.SaveChangesAsync();
             return Results.Ok(startup);
-        }).RequireAuthorization();
+        });
+        
+        // Deleta Statup
+        rota.MapDelete("excluir/{id:guid}", async (Guid id, DbContextApp context) =>
+        {
+            var startup = await context.Startups.FirstOrDefaultAsync(u => u.Id == id);
+            if (startup != null) context.Startups.Remove(startup);
+            await context.SaveChangesAsync();
+                    
+            return Results.NoContent();
+        });
     }
 }

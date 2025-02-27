@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Startup</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-label {
+            color: var(--text-orange);
+            font-weight: 500;
+        }
+        
+        .form-control, .form-select {
+            background-color: var(--primary-dark);
+            color: var(--text-white);
+            border: 1px solid var(--accent-blue);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background-color: var(--primary-dark);
+            color: var(--text-white);
+            border-color: var(--text-orange);
+            box-shadow: 0 0 0 0.25rem rgba(255, 170, 51, 0.25);
+        }
+        
+        .form-control::placeholder {
+            color: rgba(236, 240, 241, 0.5);
+        }
+        
+        .form-check-input {
+            background-color: var(--primary-dark);
+            border: 1px solid var(--accent-blue);
+        }
+        
+        .form-check-input:checked {
+            background-color: var(--text-orange);
+            border-color: var(--text-orange);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <button class="btn btn-secondary" onclick="goToManagement()">
+                <i class="bi bi-arrow-left"></i> Voltar
+            </button>
+            <h2 class="title">Editar <span id="startup-name" class="loading-text">Carregando...</span></h2>
+        </header>
+
+        <div class="content">
+            <div class="info-card">
+                <form id="update-form">
+                    <div class="mb-3">
+                        <label for="descricao" class="form-label">Descrição:</label>
+                        <textarea class="form-control" id="descricao" rows="4" required></textarea>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="status" class="form-label">Status:</label>
+                        <select class="form-select" id="status" required>
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
+                            <option value="Encerrado">Encerrado</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="modelo-negocio" class="form-label">Modelo de Negócio:</label>
+                        <select class="form-select" id="modelo-negocio" required>
+                            <option value="SAAS">SaaS</option>
+                            <option value="MARKETPLACE">Marketplace</option>
+                            <option value="ECOMMERCE">E-Commerce</option>
+                            <option value="ASSINATURA">Assinatura</option>
+                            <option value="FRANQUIA">Franquia</option>
+                            <option value="OUTRO">Outro</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3 form-check">
+                        <input type="checkbox" class="form-check-input" id="mvp">
+                        <label class="form-check-label" for="mvp">Possui MVP</label>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="cnpj" class="form-label">CNPJ:</label>
+                        <input type="text" class="form-control" id="cnpj" placeholder="XX.XXX.XXX/XXXX-XX">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="jornada" class="form-label">Jornada:</label>
+                        <select class="form-select" id="jornada" required>
+                            <option value="IDEACAO">Ideação</option>
+                            <option value="VALIDACAO">Validação</option>
+                            <option value="TRACAO">Tração</option>
+                            <option value="ESCALA">Escala</option>
+                        </select>
+                    </div>
+                    
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-4">
+                        <button type="button" class="btn btn-secondary me-md-2" onclick="goToManagement()">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="startupUpdateForm.js"></script>
+</body>
+</html>
